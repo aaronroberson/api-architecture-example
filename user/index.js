@@ -9,10 +9,10 @@ module.exports = function(server, middleware) {
    Acknowledging common practice, a PUT can be included additionally.
    */
 
-  server.get({path: '/', version: '2.0.0'}, middleware, controller.search);
-  server.post({path: '/', version: '2.0.0'}, middleware, controller.create);
-  server.get({path: '/:id', version: '2.0.0'}, middleware, controller.read);
-  server.post({path: '/:id', version: '2.0.0'}, middleware, controller.update);
-  server.del({path: '/:id', version: '2.0.0'}, middleware, controller.del);
+  server.get({path: '/users', version: '2.0.0'}, middleware, controller.search);
+  server.post({path: '/users', version: '2.0.0'}, middleware, controller.create);
+  server.get({path: '/users/:id', version: '2.0.0'}, middleware, controller.read);
+  server.post({path: '/users/:id', version: '2.0.0'}, middleware, controller.update);
+  server.del({path: '/users/:id', version: '2.0.0'}, middleware, controller.del);
 
 };

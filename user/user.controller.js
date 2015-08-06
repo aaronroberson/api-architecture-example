@@ -6,7 +6,7 @@ var scrud = require('mongoose-scrud')(User, {relate: false});
 
 function search(req, res, next) {
 
-  req.query = request.query || {};
+  req.query = req.query || {};
 
   // Support for nested resources such as
   // GET /portal/accounts/:id/transactions
@@ -17,32 +17,32 @@ function search(req, res, next) {
   // Default sort to descending order on createdAt
   req.query.__sort = req.query.__sort || '-createdAt';
 
-  scud.search(req.query, function(error, results) {
-    error ? response.json(500, {code: 'MongoError', message: error}) : response.json(200, results);
+  scrud.search(req.query, function(error, results) {
+    error ? res.json(500, {code: 'MongoError', message: error}) : res.json(200, results);
   });
 }
 
 function create(req, res, next) {
-  scud.create(req.body, function(error, results) {
-    error ? response.json(500, {code: 'MongoError', message: error}) : response.json(200, results);
+  scrud.create(req.body, function(error, results) {
+    error ? res.json(500, {code: 'MongoError', message: error}) : res.json(200, results);
   });
 }
 
 function read(req, res, next) {
-  scud.read(req.params.id, function(error, results) {
-    error ? response.json(500, {code: 'MongoError', message: error}) : response.json(200, results);
+  scrud.read(req.params.id, function(error, results) {
+    error ? res.json(500, {code: 'MongoError', message: error}) : res.json(200, results);
   });
 }
 
 function update(req, res, next) {
-  scud.create(id, req.body, function(error, results) {
-    error ? response.json(500, {code: 'MongoError', message: error}) : response.json(200, results);
+  scrud.create(id, req.body, function(error, results) {
+    error ? res.json(500, {code: 'MongoError', message: error}) : res.json(200, results);
   });
 }
 
 function del(req, res, next) {
-  scud.del(req.params.id, function(error, results) {
-    error ? response.json(500, {code: 'MongoError', message: error}) : response.json(200, results);
+  scrud.del(req.params.id, function(error, results) {
+    error ? res.json(500, {code: 'MongoError', message: error}) : res.json(200, results);
   });
 }
 

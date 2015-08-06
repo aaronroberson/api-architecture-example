@@ -5,10 +5,13 @@ module.exports = function(server) {
   var middleware = require('./middleware');
   var composableMiddleware = require('composable-middleware');
 
-  namespace(server, '/users', function() {
-    var mw = composableMiddleware(middleware.session, middleware.jwt.protect);
-    require('./user')(server, mw);
+  server.get('/', function(req, res, next) {
+    res.send({hello: 'fellow'});
   });
+
+  var mw = composableMiddleware(middleware.session, middleware.jwt.protect);
+
+  require('./user')(server, mw);
 
   /* Example:
     Nested resources via namespace but 100% code reuse of users module.
@@ -27,8 +30,6 @@ module.exports = function(server) {
 
      require('./transactions')(server, mw);
 
-      namespace(server, '/users', function() {
-
        // Establish routes such as the following:
        // GET /transactions/accounts
        // GET /transactions/:id/accounts/:id
@@ -39,10 +40,6 @@ module.exports = function(server) {
        var mw = composableMiddleware(middleware.session, middleware.jwt.protect);
 
        require('./user')(server, mw);
-
-      }
     }
    */
-
-  namespace
 };

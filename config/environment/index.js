@@ -13,7 +13,7 @@ var all = {
   root: path.normalize(__dirname + '/../../..'),
 
   // Server port
-  port: process.env.PORT || 1337,
+  port: process.env.PORT || 443,
 
   // HTTP options
   httpOptions: {
@@ -55,4 +55,4 @@ var all = {
 
 // Export the config object based on the NODE_ENV
 // ==============================================
-module.exports = _.merge(all, require('./' + process.env.NODE_ENV + '.js') || {});
+module.exports = _.merge(all, require('./' + process.env.NODE_ENV || 'development' + '.js') || {});
