@@ -1,0 +1,30 @@
+{
+  "name": "api-architecture-example",
+  "version": "1.0.0",
+  "description": "Example restify API architecture",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronroberson/api-architecture-example.git"
+  },
+  "author": "Aaron Roberson (aaronaroberson@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aaronroberson/api-architecture-example/issues"
+  },
+  "homepage": "https://github.com/aaronroberson/api-architecture-example#readme",
+  "dependencies": {
+    "jsonwebtoken": "^5.0.4",
+    "lodash": "~2.4.1",
+    "mongoose": "^4.1.1",
+    "mongoose-scrud": "^0.1.2",
+    "restify": "^3.0.3",
+    "restify-namespace": "^0.1.1",
+    "socket.io": "^1.0.6",
+    "socket.io-client": "^1.0.6",
+    "socketio-jwt": "^2.0.2"
+  }
+}
