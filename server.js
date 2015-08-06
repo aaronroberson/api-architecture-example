@@ -1,8 +1,8 @@
 'use strict';
 
 var restify = require('restify');
-var port = (process.env.NODE_ENV === 'local') ? process.env.PORT || 80 : 443;
-var server = restify.createServer();
+var config = require('./config/environment');
+var server = restify.createServer(config.httpOptions);
 var router = require('./router')(server);
 
 restify.CORS.ALLOW_HEADERS.push('Authorization');
@@ -19,6 +19,11 @@ var socketio = require('socket.io')(server, {
   path: '/socket.io-client'
 });
 
-server.listen(port, function() {
-  // Server has been started and is listening on the specified port
+require('./config/socketio')(socketio);
+
+server.listen(config.port, function() {
+  console.log('Server listening on %d, in %s mode', config.port, process.env.NODE_ENV || 'development');
 });
+
+// Expose server
+exports = module.exports = server;

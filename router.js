@@ -3,9 +3,11 @@ module.exports = function(server) {
 
   var namespace = require('restify-namespace');
   var middleware = require('./middleware');
+  var composableMiddleware = require('composable-middleware');
 
   namespace(server, '/users', function() {
-    require('./user')(server, middleware);
+    var mw = composableMiddleware(middleware.session, middleware.jwt.protect);
+    require('./user')(server, mw);
   });
 
   /* Example:
@@ -21,7 +23,9 @@ module.exports = function(server) {
      // PUT /transactions/:id
      // DELETE /transactions/:id
 
-     require('./transactions')(server, middleware);
+     var mw = composableMiddleware(middleware.session, middleware.jwt.protect);
+
+     require('./transactions')(server, mw);
 
       namespace(server, '/users', function() {
 
@@ -32,7 +36,9 @@ module.exports = function(server) {
        // PUT /transactions/:id/accounts/:id
        // DELETE /transactions/:id/accounts/:id
 
-       require('./user')(server, middleware);
+       var mw = composableMiddleware(middleware.session, middleware.jwt.protect);
+
+       require('./user')(server, mw);
 
       }
     }
